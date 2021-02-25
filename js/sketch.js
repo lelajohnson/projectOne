@@ -32,13 +32,7 @@ function setup(){
     imageArray[i] = loadImage('images/' + table.getString(i, 'image'));
     categoryArray.push(table.getString(i, "category"));
     interestArray.push(table.getString(i, "facebookInterest"));
-
-  for(let i = 0; i < table.getRowCount(); i++){
-    img = imageArray[i];
-    img.loadPixels();
   }
-  }
-
   selectMenu = createSelect();
   selectMenu.option('Animals');
   selectMenu.option('Art');
@@ -62,8 +56,11 @@ function setup(){
   submitButton.position(300, 200);
   submitButton.mousePressed(ask);
   submitButton.style('z-index', '2');
+  }
 
-}
+
+
+
 function ask(){
 background(255);
   let val = selectMenu.value();
@@ -72,6 +69,8 @@ background(255);
         if(val == categoryArray[i]){
       //    randX = random(50, windowWidth - 50);
       //    randY = random(50, windowHeight - 50);
+          let img = imageArray[i];
+          img.loadPixels();
           let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
           let x = floor(random(imageArray[i].width));
           let y = floor(random(imageArray[i].height));
