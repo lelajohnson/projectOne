@@ -69,19 +69,21 @@ background(255);
         if(val == categoryArray[i]){
       //    randX = random(50, windowWidth - 50);
       //    randY = random(50, windowHeight - 50);
-          let img = imageArray[i];
-          img.loadPixels();
-          let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
-          let x = floor(random(imageArray[i].width));
-          let y = floor(random(imageArray[i].height));
-          let pix = imageArray[i].get(x,y);
-          fill(pix, 128);
-          ellipse(x, y, pointillize, pointillize);
-        //  image(imageArray[i], randX, randY, 100, 100);
-        //  text(interestArray[i], randX, randY+70);
+        draw();
   }
   }
 }
 function draw(){
-
+  for(let i = 0; i < table.getRowCount(); i++){
+  let img = imageArray[i];
+  img.loadPixels();
+  let pointillize = map(mouseX, 0, width, smallPoint, largePoint);
+  let x = floor(random(imageArray[i].width));
+  let y = floor(random(imageArray[i].height));
+  let pix = imageArray[i].get(x,y);
+  fill(pix, 128);
+  ellipse(x, y, pointillize, pointillize);
+  //  image(imageArray[i], randX, randY, 100, 100);
+  //  text(interestArray[i], randX, randY+70);
+}
 }
