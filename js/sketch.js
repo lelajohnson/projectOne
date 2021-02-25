@@ -3,6 +3,9 @@ let randX;
 let randY;
 let smallPoint;
 let largePoint;
+let img;
+let x;
+let y;
 
 let selectMenu;
 let submitButton;
@@ -30,7 +33,7 @@ function setup(){
     categoryArray.push(table.getString(i, "category"));
     interestArray.push(table.getString(i, "facebookInterest"));
 
-  for(let i = 0; i <table.getRowCount(); i++){
+  for(let i = 0; i < table.getRowCount(); i++){
     img = imageArray[i];
     img.loadPixels();
   }
@@ -55,7 +58,6 @@ function setup(){
   selectMenu.option('Wellness');
   selectMenu.position(20, 40);
   selectMenu.style('z-index', '2');
-
   submitButton = createButton('Submit');
   submitButton.position(300, 200);
   submitButton.mousePressed(ask);
