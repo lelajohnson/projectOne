@@ -7,6 +7,9 @@ let img;
 let x;
 let y;
 
+let offset = 0;
+let easing = 0.05;
+
 let selectMenu;
 let submitButton;
 
@@ -52,10 +55,14 @@ function setup(){
   selectMenu.option('Wellness');
   selectMenu.position(20, 40);
   selectMenu.style('z-index', '2');
+  selectMenu.style('font-size', '30px');
+  selectMenu.position((windowWidth/2 - 120), (windowHeight/2 - 100));
   submitButton = createButton('Submit');
-  submitButton.position(300, 200);
+  submitButton.position(windowWidth/2 - 50, windowHeight/2 - 2);
   submitButton.mousePressed(ask);
   submitButton.style('z-index', '2');
+  submitButton.style('font-size', '30px');
+  submitButton.style('background-color', 55);
   }
 
 
@@ -67,9 +74,12 @@ background(255);
 
     for(let i = 0; i < table.getRowCount(); i++){
         if(val == categoryArray[i]){
-      //    randX = random(50, windowWidth - 50);
-      //    randY = random(50, windowHeight - 50);
-        draw();
+        randX = random(50, windowWidth - 50);
+        randY = random(50, windowHeight - 50);
+        image(imageArray[i], randX, randY);
+        text(interestArray[i], randX, randY+70);
+        draw(categoryArray[i]);
+
   }
   }
 }
@@ -81,9 +91,15 @@ function draw(){
   let x = floor(random(imageArray[i].width));
   let y = floor(random(imageArray[i].height));
   let pix = imageArray[i].get(x,y);
-  fill(pix, 128);
+  fill(pix, 500);
   ellipse(x, y, pointillize, pointillize);
-  //  image(imageArray[i], randX, randY, 100, 100);
-  //  text(interestArray[i], randX, randY+70);
+  if(selectMenu.value() == categoryArray[i]){
+    image(imageArray[i], 0, 0);
+    let dx = mouseX - imageArray[i].width/2 - offset;
+    offset += dx * easing;
+    tint(255,127);
+    image(imageArray[i], offset, 0);
+}
+
 }
 }
